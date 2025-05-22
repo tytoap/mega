@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/megapizza-vilaa.firebasestorage.app/o/logo.png?alt=media&token=932bd638-12a4-4233-ba74-6ebabec21ef0" type="image/png">
     <title>Mega Pizza Vila A</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -130,8 +131,11 @@
             <div class="cart-fields" id="cartFields">
                 <input type="text" id="cartNome" placeholder="Seu nome" required>
                 <input type="tel" id="cartTel" placeholder="Telefone" required>
-            </div>
-            <button class="cart-checkout" id="checkoutBtn">Finalizar Pedido</button>
+                <label for="cartObservations">Observações:</label>
+            <textarea id="cartObservations" rows="5" placeholder="Alguma observação sobre o pedido..."></textarea>
+
+                        </div>
+                        <button class="cart-checkout" id="checkoutBtn">Finalizar Pedido</button>
         </div>
     </div>
 
