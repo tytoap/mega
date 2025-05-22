@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Headset Bar - CRUD Categorias</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f0f0;
+    }
+    #login-form, #admin-content {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+    }
+    #login-form input, #login-form button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+    #login-form button {
+      background: #007bff;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #login-form button:hover {
+      background: #0056b3;
+    }
+    #logout-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #logout-btn:hover {
+      background: #a71d2a;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    select, input[type=text], input[type=number] {
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button.btn-small {
+      padding: 6px 10px;
+      font-size: 14px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: none;
+      color: white;
+    }
+    button.edit-btn {
+      background: #28a745;
+    }
+    button.delete-btn {
+      background: #dc3545;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    #error-message {
+      color: red;
+      font-weight: bold;
+      min-height: 1.4em;
+      margin-bottom: 15px;
+    }
+    #success-message {
+      color: green;
+      font-weight: bold;
+      min-height: 1.4em;
+      margin-bottom: 15px;
+    }
+    img.thumb {
+      width: 80px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login -->
+  <div id="login-form">
+    <h2>Login Admin</h2>
+    <input type="email" id="email" placeholder="E-mail" required />
+    <input type="password" id="password" placeholder="Senha" required />
+    <button id="login-btn">Entrar</button>
+    <p id="error-message"></p>
+  </div>
+
+  <!-- Conteúdo Admin -->
+  <div id="admin-content" style="display:none;">
+    <button id="logout-btn">Sair</button>
+    <h2>CRUD Categorias e Items</h2>
+
+    <div>
+      <label for="select-category">Selecione Categoria:</label>
+      <select id="select-category">
+        <option value="" disabled selected>Escolha uma categoria</option>
+      </select>
+    </div>
+
+    <h3>Preço padrão da categoria: R$ <span id="category-price">0.00</span></h3>
+    <input type="number" id="category-price-input" step="0.01" min="0" placeholder="Alterar preço padrão da categoria" />
+    <button id="update-category-price">Atualizar preço da categoria</button>
+
+    <hr/>
+
+    <h3>Items da categoria</h3>
+    <table id="items-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Imagem</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- items aqui -->
+      </tbody>
+    </table>
+
+    <h3 id="form-title">Adicionar novo item</h3>
+    <form id="item-form">
+      <input type="hidden" id="item-key" />
+      <label>ID:</label>
+      <input type="number" id="item-id" required />
+      <label>Imagem (URL):</label>
+      <input type="text" id="item-image" required placeholder="https://..." />
+      <label>Nome:</label>
+      <input type="text" id="item-name" required />
+      <label>Descrição:</label>
+      <input type="text" id="item-descricao" />
+      <label>Preço:</label>
+      <input type="number" id="item-price" step="0.01" min="0" required />
+      <button type="submit" id="save-item-btn">Salvar Item</button>
+      <button type="button" id="cancel-edit-btn" style="display:none; margin-left:10px;">Cancelar</button>
+    </form>
+
+    <p id="success-message"></p>
+  </div>
+
+<script>
+  // CONFIGURAÇÕES FIREBASE - substitua com suas credenciais
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2OUAGcgs89cF0uQd53L2UKe1BEjPySuA",
+  authDomain: "megapizza-vilaa.firebaseapp.com",
+  databaseURL: "https://megapizza-vilaa-default-rtdb.firebaseio.com",
+  projectId: "megapizza-vilaa",
+  storageBucket: "megapizza-vilaa.firebasestorage.app",
+  messagingSenderId: "920643125791",
+  appId: "1:920643125791:web:1e295c057e4ea234c98b2a",
+  measurementId: "G-VYFT7J25V3"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const database = firebase.database();
+
+  const loginForm = document.getElementById('login-form');
+  const adminContent = document.getElementById('admin-content');
+  const loginBtn = document.getElementById('login-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  const errorMessage = document.getElementById('error-message');
+  const successMessage = document.getElementById('success-message');
+
+  const selectCategory = document.getElementById('select-category');
+  const categoryPriceDisplay = document.getElementById('category-price');
+  const categoryPriceInput = document.getElementById('category-price-input');
+  const updateCategoryPriceBtn = document.getElementById('update-category-price');
+
+  const itemsTableBody = document.querySelector('#items-table tbody');
+  const itemForm = document.getElementById('item-form');
+  const itemKeyInput = document.getElementById('item-key');
+  const itemIdInput = document.getElementById('item-id');
+  const itemImageInput = document.getElementById('item-image');
+  const itemNameInput = document.getElementById('item-name');
+  const itemDescricaoInput = document.getElementById('item-descricao');
+  const itemPriceInput = document.getElementById('item-price');
+  const formTitle = document.getElementById('form-title');
+  const saveItemBtn = document.getElementById('save-item-btn');
+  const cancelEditBtn = document.getElementById('cancel-edit-btn');
+
+  let currentCategory = null;
+  let itemsData = {};
+
+  // Autenticação e controle de acesso
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      const tokenResult = await user.getIdTokenResult();
+      if (tokenResult.claims.admin) {
+        loginForm.style.display = 'none';
+        adminContent.style.display = 'block';
+        errorMessage.textContent = '';
+        loadCategories();
+      } else {
+        errorMessage.textContent = 'Você não tem permissão para acessar esta área.';
+        await auth.signOut();
+        loginForm.style.display = 'block';
+        adminContent.style.display = 'none';
+      }
+    } else {
+      loginForm.style.display = 'block';
+      adminContent.style.display = 'none';
+      errorMessage.textContent = '';
+    }
+  });
+
+  loginBtn.addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    errorMessage.textContent = '';
+    successMessage.textContent = '';
+
+    if (!email || !password) {
+      errorMessage.textContent = 'Preencha email e senha.';
+      return;
+    }
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      errorMessage.textContent = 'Erro: ' + error.message;
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    auth.signOut();
+  });
+
+  // Carrega categorias do DB e popula o select
+  async function loadCategories() {
+    const snapshot = await database.ref('/').once('value');
+    const data = snapshot.val();
+    selectCategory.innerHTML = '<option value="" disabled selected>Escolha uma categoria</option>';
+    if (data) {
+      for (const key in data) {
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = key;
+        selectCategory.appendChild(opt);
+      }
+    }
+    // Limpa tela
+    clearItemsTable();
+    clearForm();
+    categoryPriceDisplay.textContent = '0.00';
+    categoryPriceInput.value = '';
+    currentCategory = null;
+  }
+
+  // Quando muda categoria selecionada
+  selectCategory.addEventListener('change', async () => {
+    clearMessages();
+    currentCategory = selectCategory.value;
+    if (!currentCategory) return;
+    // Busca preço categoria
+    const catSnap = await database.ref(currentCategory).once('value');
+    const catData = catSnap.val();
+    categoryPriceDisplay.textContent = catData && catData.price ? Number(catData.price).toFixed(2) : '0.00';
+    categoryPriceInput.value = catData && catData.price ? catData.price : '';
+    // Carrega items
+    itemsData = (catData && catData.items) ? catData.items : {};
+    renderItemsTable();
+    clearForm();
+  });
+
+  // Atualiza preço categoria
+  updateCategoryPriceBtn.addEventListener('click', async () => {
+    clearMessages();
+    if (!currentCategory) {
+      errorMessage.textContent = 'Selecione uma categoria primeiro.';
+      return;
+    }
+    const newPrice = parseFloat(categoryPriceInput.value);
+    if (isNaN(newPrice) || newPrice < 0) {
+      errorMessage.textContent = 'Informe um preço válido.';
+      return;
+    }
+    try {
+      await database.ref(currentCategory).update({ price: newPrice });
+      categoryPriceDisplay.textContent = newPrice.toFixed(2);
+      successMessage.textContent = 'Preço da categoria atualizado com sucesso.';
+    } catch (e) {
+      errorMessage.textContent = 'Erro ao atualizar preço: ' + e.message;
+    }
+  });
+
+  // Renderiza tabela de items
+  function renderItemsTable() {
+    itemsTableBody.innerHTML = '';
+    if (!itemsData) return;
+
+    Object.keys(itemsData).forEach(key => {
+      const item = itemsData[key];
+      const tr = document.createElement('tr');
+
+      const tdId = document.createElement('td');
+      tdId.textContent = item.id;
+      tr.appendChild(tdId);
+
+      const tdImage = document.createElement('td');
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.name;
+      img.className = 'thumb';
+      tdImage.appendChild(img);
+      tr.appendChild(tdImage);
+
+      const tdName = document.createElement('td');
+      tdName.textContent = item.name;
+      tr.appendChild(tdName);
+
+      const tdDesc = document.createElement('td');
+      tdDesc.textContent = item.descricao || 'Sem descrição disponível.';
+      tr.appendChild(tdDesc);
+
+      const tdPrice = document.createElement('td');
+      tdPrice.textContent = Number(item.price).toFixed(2);
+      tr.appendChild(tdPrice);
+
+      const tdActions = document.createElement('td');
+      // Edit
+      const editBtn = document.createElement('button');
+      editBtn.textContent = 'Editar';
+      editBtn.className = 'btn-small edit-btn';
+      editBtn.addEventListener('click', () => loadItemToForm(key, item));
+      tdActions.appendChild(editBtn);
+      // Delete
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Excluir';
+      deleteBtn.className = 'btn-small delete-btn';
+      deleteBtn.addEventListener('click', () => deleteItem(key));
+      tdActions.appendChild(deleteBtn);
+
+      tr.appendChild(tdActions);
+
+      itemsTableBody.appendChild(tr);
+    });
+  }
+
+  // Limpa tabela
+  function clearItemsTable() {
+    itemsTableBody.innerHTML = '';
+  }
+
+  // Limpa mensagens de erro/sucesso
+  function clearMessages() {
+    errorMessage.textContent = '';
+    successMessage.textContent = '';
+  }
+
+  // Carrega item no form para editar
+  function loadItemToForm(key, item) {
+    clearMessages();
+    formTitle.textContent = 'Editar item';
+    itemKeyInput.value = key;
+    itemIdInput.value = item.id;
+    itemImageInput.value = item.image;
+    itemNameInput.value = item.name;
+    itemDescricaoInput.value = item.descricao || '';
+    itemPriceInput.value = item.price;
+    saveItemBtn.textContent = 'Atualizar Item';
+    cancelEditBtn.style.display = 'inline-block';
+  }
+
+  // Limpa form para adicionar novo
+  function clearForm() {
+    formTitle.textContent = 'Adicionar novo item';
+    itemKeyInput.value = '';
+    itemIdInput.value = '';
+    itemImageInput.value = '';
+    itemNameInput.value = '';
+    itemDescricaoInput.value = '';
+    itemPriceInput.value = '';
+    saveItemBtn.textContent = 'Salvar Item';
+    cancelEditBtn.style.display = 'none';
+  }
+
+  cancelEditBtn.addEventListener('click', () => {
+    clearForm();
+    clearMessages();
+  });
+
+  // Form submit - criar ou atualizar item
+  itemForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    if (!currentCategory) {
+      errorMessage.textContent = 'Selecione uma categoria primeiro.';
+      return;
+    }
+
+    const id = parseInt(itemIdInput.value);
+    const image = itemImageInput.value.trim();
+    const name = itemNameInput.value.trim();
+    const descricao = itemDescricaoInput.value.trim() || 'Sem descrição disponível.';
+    const price = parseFloat(itemPriceInput.value);
+
+    if (isNaN(id) || !image || !name || isNaN(price)) {
+      errorMessage.textContent = 'Preencha todos os campos corretamente.';
+      return;
+    }
+
+    const key = itemKeyInput.value; // se vazio, criar novo
+
+    // Preparar objeto item
+    const newItem = {
+      id,
+      image,
+      name,
+      descricao,
+      price
+    };
+
+    try {
+      if (key) {
+        // atualizar item existente
+        await database.ref(`${currentCategory}/items/${key}`).set(newItem);
+        itemsData[key] = newItem;
+        successMessage.textContent = 'Item atualizado com sucesso.';
+      } else {
+        // criar novo item - gerar nova chave numerica sequencial
+        // pega keys atuais e acha max +1
+        let nextKey = 0;
+        if (itemsData) {
+          const keys = Object.keys(itemsData).map(k => parseInt(k)).filter(n => !isNaN(n));
+          if (keys.length) {
+            nextKey = Math.max(...keys) + 1;
+          }
+        }
+        await database.ref(`${currentCategory}/items/${nextKey}`).set(newItem);
+        itemsData[nextKey] = newItem;
+        successMessage.textContent = 'Item adicionado com sucesso.';
+      }
+      renderItemsTable();
+      clearForm();
+    } catch (e) {
+      errorMessage.textContent = 'Erro ao salvar item: ' + e.message;
+    }
+  });
+
+  // Deletar item
+  async function deleteItem(key) {
+    if (!confirm('Tem certeza que deseja excluir este item?')) return;
+    clearMessages();
+    try {
+      await database.ref(`${currentCategory}/items/${key}`).remove();
+      delete itemsData[key];
+      renderItemsTable();
+      successMessage.textContent = 'Item removido com sucesso.';
+    } catch (e) {
+      errorMessage.textContent = 'Erro ao remover item: ' + e.message;
+    }
+  }
+</script>
+
+</body>
+</html>

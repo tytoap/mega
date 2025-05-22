@@ -1,0 +1,679 @@
+{
+
+  "sabores": {
+    "items": [
+      {
+        "name": "Alho e óleo",
+        "description": "Molho de tomate, mussarela, alho frito e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Alhobresa",
+        "description": "Molho de tomate, mussarela, calabresa picada, alho frito e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Atum sem cebola",
+        "description": "Molho de tomate, mussarela, atum e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Atum com cebola",
+        "description": "Molho de tomate, mussarela, atum, cebola e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Bacon",
+        "description": "Molho de tomate, mussarela, fatias de bacon e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Bacon com catupiry",
+        "description": "Molho de tomate, mussarela, fatias de bacon, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Baiana",
+        "description": "Molho de tomate, mussarela, calabresa, pimentão, tomate, molho de pimenta e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Bolonhesa",
+        "description": "Molho de tomate, mussarela, carne moída à bolonhesa, tomate e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Calabresa sem cebola",
+        "description": "Molho de tomate, mussarela, calabresa em rodelas e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Calabresa com cebola",
+        "description": "Molho de tomate, mussarela, calabresa em rodelas, cebola e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Catupiry",
+        "description": "Molho de tomate, mussarela, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Coração de frango",
+        "description": "Molho de tomate, mussarela, coração de frango, tomate picado e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Escarola com bacon",
+        "description": "Molho de tomate, mussarela, escarola, bacon e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Filé com champingnon",
+        "description": "Molho de tomate, mussarela, filé bovino com cubos de champignon, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Filé com fritas",
+        "description": "Molho de tomate, mussarela, filé bovino e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Filé com tomate",
+        "description": "Molho de tomate, mussarela, filé bovino com cubos de tomate e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Frango com catupiry",
+        "description": "Molho de tomate, mussarela, frango desfiado, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Italiana",
+        "description": "Molho de tomate, mussarela, presunto picado, palmito, milho, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Lombo com abacaxi",
+        "description": "Molho de tomate, mussarela, lombo e abacaxi picado",
+        "price": 35.00
+      },
+      {
+        "name": "Lombo com catupiry",
+        "description": "Molho de tomate, mussarela, lombo defumado, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Margherita",
+        "description": "Molho de tomate, mussarela, tomate, parmesão, manjericão e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Mega Pizza",
+        "description": "Molho de tomate, mussarela, frango, milho, ervilha, calabresa, parmesão, ovos e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Milho com bacon",
+        "description": "Molho de tomate, mussarela, milho verde, bacon e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Milho verde",
+        "description": "Molho de tomate, mussarela, milho verde e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Moda da casa com cebola",
+        "description": "Molho de tomate, mussarela, calabresa, milho, palmito, cebola e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Mussarela com azeitona",
+        "description": "Molho de tomate, mussarela, azeitona, rodelas de tomate e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Napolitana",
+        "description": "Molho de tomate, mussarela, provolone, rodelas de tomate e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Palmito",
+        "description": "Molho de tomate, mussarela, palmito picado e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Paulista",
+        "description": "Molho de tomate, mussarela, presunto ralado, ervilha, milho, palmito e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Peito de peru com bacon",
+        "description": "Molho de tomate, mussarela, peito de peru, bacon e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Peito de peru com champignon",
+        "description": "Molho de tomate, mussarela, peito de peru, champignon e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Pepperoni",
+        "description": "Molho de tomate, mussarela, pepperoni fatiado e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Portuguesa",
+        "description": "Molho de tomate, mussarela, presunto picado, pimentão, tomate, cebola, ovos e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Quatro queijos",
+        "description": "Molho de tomate, mussarela, provolone, parmesão, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Salame italiano",
+        "description": "Molho de tomate, mussarela, salame italiano fatiado e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Siciliana",
+        "description": "Molho de tomate, mussarela, bacon, provolone e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Strognoff de filé",
+        "description": "Molho de tomate, mussarela, strogonoff de filé, batata palha e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Strognoff de frango",
+        "description": "Molho de tomate, mussarela, strogonoff de frango, batata palha e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Tomate seco com rúcula",
+        "description": "Molho de tomate, mussarela, tomate seco, rúcula e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Três décadas",
+        "description": "Molho de tomate, mussarela, lombo, frango, champignon, catupiry e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Vegetariana com cebola",
+        "description": "Molho de tomate, mussarela, milho, ervilha, tomate, pimentão, cebola e orégano",
+        "price": 35.00
+      },
+      {
+        "name": "Banana com canela",
+        "description": "Mussarela, leite condensado, banana, canela e açúcar",
+        "price": 35.00
+      },
+      {
+        "name": "Chocolate preto",
+        "description": "Mussarela, leite condensado, chocolate preto",
+        "price": 35.00
+      },
+      {
+        "name": "Chocolate branco",
+        "description": "Mussarela, leite condensado, chocolate branco",
+        "price": 35.00
+      },
+      {
+        "name": "Prestígio",
+        "description": "Mussarela, chocolate, coco ralado e leite condensado",
+        "price": 35.00
+      },
+      {
+        "name": "Coco",
+        "description": "Mussarela, leite condensado, coco",
+        "price": 35.00
+      },
+      {
+        "name": "Chokito",
+        "description": "Mussarela, leite condensado, chocolate e flocos crocantes",
+        "price": 35.00
+      },
+      {
+        "name": "Sedução",
+        "description": "Mussarela, leite condensado, chocolate branco, coco e morango em pedaços",
+        "price": 35.00
+      },
+      {
+        "name": "Charge",
+        "description": "Mussarela, leite condensado, chocolate preto, doce de leite e amendoim",
+        "price": 35.00
+      },
+      {
+        "name": "Confete",
+        "description": "Leite condensado, chocolate preto e confetes",
+        "price": 35.00
+      },
+      {
+        "name": "Sensação",
+        "description": "Mussarela, leite condensado, chocolate preto e morango em pedaços",
+        "price": 35.00
+      },
+      {
+        "name": "Califórnia",
+        "description": "Mussarela, abacaxi, pêssego, uva, pera, figo, cereja",
+        "price": 35.00
+      },
+      {
+        "name": "Abacaxi com canela",
+        "description": "Mussarela, abacaxi, canela e açúcar",
+        "price": 35.00
+      },
+      {
+        "name": "Romeu e Julieta",
+        "description": "Mussarela, goiabada, leite condensado e creme de leite",
+        "price": 35.00
+      }
+    ]
+     },
+  "pizzapequena":{
+    "name": "Pizzap",
+    "description": "Até 2 sabores",
+    "price": 35.00
+  },
+  "pizzagrande":{
+    "name": "Pizzag",
+        "description": "Até 3 sabores",
+        "price": 65.00
+  },
+  "pizzagigante":{
+    "name": "Pizzagg",
+    "description": "Até 4 sabores",
+    "price": 75.00
+  },
+
+ 
+
+  
+ "triotradicional1": {
+      "items": [
+        {
+          "name": "Trio Tradicional",
+          "description": "Batata, frango e polenta",
+          "sizes": {
+            "médio": {
+              "peso": "600g",
+              "preco": 28.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            },
+            "grande": {
+              "peso": "1kg",
+              "preco": 43.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            }
+          }
+        },
+        {
+          "name": "Trio Mandioca",
+          "description": "Mandioca, frango e batata",
+          "sizes": {
+            "médio": {
+              "peso": "600g",
+              "preco": 28.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            },
+            "grande": {
+              "peso": "1kg",
+              "preco": 43.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            }
+          }
+        },
+        {
+          "name": "Trio Duas Batatas",
+          "description": "Frango e duas batatas",
+          "sizes": {
+            "médio": {
+              "peso": "600g",
+              "preco": 28.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            },
+            "grande": {
+              "peso": "1kg",
+              "preco": 43.99,
+              "molho_adicional": {
+                "nome": "Molho de Alho",
+                "preco": 5.00
+              }
+            }
+          }
+        }
+      ]
+    },
+ 
+  
+
+  "triotilapia":{
+    "items":[
+      {
+        "name": "Trio Tilápia",
+        "description": "Batata, tilápia, e polenta ou mandioca",
+        "sizes": {
+            "médio": {
+            "price": 105.99
+        },
+          "grande": {
+          "price": 116.99
+        },
+        
+
+        "acompanhamentos_gratis": [
+        {
+          "name": "Batata",
+          "price": 0.00
+        },
+        {
+          "name": "Polenta",
+          "price": 0.00
+        },
+        {
+          "name": "Mandioca",
+          "price": 0.00
+        }
+      ]       }
+        
+      },
+      {
+        "name": "Trio Tilápia com Frango",
+        "description": "Trio com frango e tilápia, pode ser acompanhado com 1 opção: polenta, batata ou mandioca",
+        "sizes": {
+            "médio": {
+            "price": 105.99
+        },
+          "grande": {
+          "price": 116.99
+        },
+        "acompanhamentos_gratis":{
+          "Batata": "Batata",
+          "Polenta": "Polenta",
+          "Mandioca": "Mandioca"
+
+
+        }
+       }
+        
+      }
+    ]
+  },
+  "porcaogrande":{
+    "items":[
+      {
+        "name": "Frango Frito",
+        "description": "Frango frito",
+        "price": 43.99
+      },
+      {
+        "name": "Batata Frita",
+        "description": "Batata frita",
+        "price": 32.99
+      },
+      {
+        "name": "Calabresa Frita",
+        "description": "Calabresa frita",
+        "price": 38.99
+      },
+      {
+        "name": "Calabresa Frita com Cebola",
+        "description": "Calabresa frita com cebola",
+        "price": 39.99
+      },
+      {
+        "name": "Polenta Frita",
+        "description": "Polenta frita",
+        "price": 32.99
+      },
+      {
+        "name": "Mandioca Frita",
+        "description": "Mandioca frita",
+        "price": 32.99
+      },
+      {
+        "name": "Filé de Tilápia Frita",
+        "description": "Filé de tilápia frita",
+        "price": 60.99
+      },
+      {
+        "name": "Rúcula com Tomate Seco",
+        "description": "Rúcula com tomate seco",
+        "price": 20.00
+      },
+      {
+        "name": "Molho de Alho",
+        "description": "Adicional de molho de alho",
+        "price": 5.00
+      },
+      {
+        "name": "Espaguete Alho e Óleo",
+        "description": "Espaguete alho e óleo",
+        "price": 26.99
+      },
+      {
+        "name": "Espaguete à Bolonhesa",
+        "description": "Espaguete à bolonhesa",
+        "price": 26.99
+      }
+
+
+    ]
+  },
+  "porcaomedia":{
+    "items":[
+      {
+        "name": "Frango Frito",
+        "description": "Frango frito",
+        "price": 27.99
+      },
+      {
+        "name": "Batata Frita",
+        "description": "Batata frita",
+        "price": 21.99
+      },
+      {
+        "name": "Polenta Frita",
+        "description": "Polenta frita",
+        "price": 21.99
+      },
+      {
+        "name": "Mandioca Frita",
+        "description": "Mandioca frita",
+        "price": 21.99
+      },
+      {
+        "name": "Calabresa",
+        "description": "Calabresa",
+        "price": 21.99
+      },
+      {
+        "name": "Calabresa com Cebola",
+        "description": "Calabresa com cebola",
+        "price": 21.99
+      },
+      {
+        "name": "Macarrão ao Alho e Óleo",
+        "description": "Macarrão ao alho e óleo",
+        "price": 19.99
+      },
+      {
+        "name": "Macarrão à Bolonhesa",
+        "description": "Macarrão à bolonhesa",
+        "price": 19.99
+      },
+      {
+        "name": "Molho de Alho",
+        "description": "Adicional de molho de alho",
+        "price": 5.00
+      }
+
+
+    ]
+  },
+  "bebidas":{
+    "items":[
+      {
+        "name": "Refrigerante Lata",
+        "description": "Escolha os sabores",
+        "sizes":{
+          "coca":
+            {"coca": "coca cola",
+            "preco": 8
+            },
+          "fanta":
+            {"fanta": "fanta uva",
+            "preco": 8
+            },
+          "citrus":
+            {"cocitrusca": "citrus",
+            "preco": 8
+            }
+
+          
+
+        }
+      }, 
+       
+
+      
+      {
+        "name": "Sucos",
+        "description": "Sucos naturais e de polpa, embalagem de 1 litro",
+        "price": 18.00,
+        "sizes":{
+          "laranjaacerola":
+            {"laranjaacerola": "Laranja com acerola natural",
+            "preco": 18,
+            "description": "1 litro"
+            },
+          "Acerola":
+            {"Acerola": " Acerola polpa",
+            "preco": 18,
+            "description": "1 litro"
+            },
+          "Abacaxi":
+            {"Abacaxi": "Abacaxi com hortelã natural",
+            "preco": 18,
+            "description": "1 litro"            
+            },
+          "Limao":
+            {"Abacaxi": "Limão Natural",
+            "preco": 18,
+            "description": "1 litro"            
+            },
+            "Lanranja":
+            {"Lanranja": "Laranja Natural",
+            "preco": 18,
+            "description": "1 litro"            
+            }
+        }
+      },
+      {
+      "name": "Cervejas",
+      "description": "Cervejas 600ml com casco incluso (a partir de R$12,00)",
+      "price": 12.00,
+        "sizes":{
+          "cerveja":
+            {
+            "coca": "cerveja",
+            "preco": 12
+            }
+
+          
+
+        }
+      },
+     
+      {
+        "name": "Coca-Cola2L",
+        "description": "Somente embalagem de 2 litros",
+        "sizes":{
+          "CocaCola2l":
+          {
+            "Coca": "Coca Cola 2 litros",
+            "description": "Somente  de 2 litros",            
+            "preco": 15.00
+            
+          },
+          "GuaranaKuat":
+          {
+            "Guarana": "Guarana Kuat 2 litros",
+            
+            "preco": 13.00
+          },
+          "aguasemgas":
+          {
+            "Agua": "Água sem gás 500ml",
+             
+            "preco": 5.00
+          },
+          "Águacomgás":
+          {
+            
+            "Aguacomgas": "Água com gás 500ml",
+             
+            "preco": 5.50
+          },
+          "CocaColaZero":
+          {
+            "Cocazero": "Coca Cola Zero 2 litros",
+            
+            "preco": 15.00
+          },
+          "Sprite":
+          {
+            "Sprite": "Sprite 2 litros",
+            
+            "preco": 13.00
+          },
+          "FantaLaranja":
+          {
+            "Fanta": "Fanta Laranja 2 litros" ,
+            
+            "preco": 13.00
+          },
+          "CocaCola":
+          {
+            "Coca1lt": "Coca Cola 1 litro",
+            
+            "preco": 8.00
+          },
+          "Aguasaborizada":
+          {
+            "saborizada": "Água saborizada",
+            "preco": 6.00
+          }
+
+          
+
+        }
+      }
+    ]
+  }
+   
+
+
+  
+  
+  
+}

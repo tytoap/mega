@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Pizza Vila A</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+
+            <div class="logo">
+                <div class="logo-circle">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/megapizza-vilaa.firebasestorage.app/o/logo.png?alt=media&token=932bd638-12a4-4233-ba74-6ebabec21ef0" />
+                </div>
+            </div>
+             
+            <h1 class="logo-text-pizza">Mega Pizza Vila A</h1>
+        
+            <p class="slogan">Eu amo pizza!</p>
+        </header>
+        
+        <!-- Espaçador para compensar a navegação fixa -->
+        <div class="nav-spacer" id="navSpacer"></div>
+        
+        <!-- Wrapper para navegação fixa -->
+        <div class="fixed-nav-wrapper" id="fixedNavWrapper">
+            <div class="nav-container">
+                <!-- Conteúdo da barra de navegação -->
+                
+                <div class="nav-buttons">
+                    <button class="nav-button">
+                        <span style="color: #E91E63; margin-right: 8px;">🎟️</span>
+                        Meus Pedidos
+                    </button>
+                    <button class="nav-button">
+                        <span style="color: #2196F3; margin-right: 8px;">ℹ️</span>
+                        Taxa e Tempo de Entrega
+                    </button>
+                </div>
+            </div>
+            
+            <div class="category-menu" id="categoryMenu">
+                <!-- Os botões serão inseridos aqui dinamicamente -->
+            </div>
+        </div>
+        
+        <main id="productSections">
+            <!-- As seções serão inseridas aqui dinamicamente -->
+        </main>
+        
+      
+    </div>
+    
+    <!-- Modal de Sabores -->
+    <div class="modal-overlay" id="flavorModal">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-back" id="modalBack">←</button>
+                <h3 class="modal-title" id="modalTitle">Escolha os sabores</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="Imagem do Produto" class="modal-product-image" id="modalImage">
+                <p class="modal-subtitle" id="modalSubtitle">Selecione até <span id="maxFlavors">0</span> sabores</p>
+                <ul class="flavor-list" id="flavorList">
+                    <!-- Os sabores serão inseridos aqui dinamicamente -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button" id="addToCartBtn">Adicionar ao carrinho</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Produtos -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-back" id="productModalBack">←</button>
+                <h3 class="modal-title" id="productModalTitle">Detalhes do Produto</h3>
+                <button class="modal-close" id="productModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="Imagem do Produto" class="modal-product-image" id="productModalImage">
+                <div class="product-modal-details">
+                    <h4 id="productModalName"></h4>
+                    
+                    <p id="productModalDescription"></p>
+                    <p class="product-modal-price" id="productModalPrice"></p>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button" id="addProductToCartBtn">Adicionar ao carrinho</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carrinho -->
+    <div class="cart-button" id="cartButton">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-badge hidden" id="cartBadge">0</span>
+    </div>
+    
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3 class="cart-title">Seu Carrinho</h3>
+                <button class="cart-close" id="cartClose">&times;</button>
+            </div>
+            
+            <!-- Alerta para carrinho com itens (inicialmente oculto) -->
+            <div class="alert" id="cartAlert" style="display: none;">
+                <div>Você possui itens no carrinho. Deseja remover?</div>
+                <div class="alert-actions">
+                    <button class="alert-button alert-button-primary" id="clearCartBtn">Sim, limpar</button>
+                    <button class="alert-button alert-button-secondary" id="keepCartBtn">Não, manter</button>
+                </div>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Os itens do carrinho serão inseridos aqui dinamicamente -->
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+            <div class="cart-fields" id="cartFields">
+                <input type="text" id="cartNome" placeholder="Seu nome" required>
+                <input type="tel" id="cartTel" placeholder="Telefone" required>
+            </div>
+            <button class="cart-checkout" id="checkoutBtn">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Mega Pizza Vila A</p>
+        <p> Telefone: (45) 99127-1050 Endereço: Av. Garibaldi ,1214 - Lancaster III / Foz do Iguaçu  </p>
+        <p>© 2025 Mega Pizza Vila A - Todos os direitos reservados</p>
+    </footer>
+    
+    <!-- Toast de Sucesso -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js">
+        
+    </script>
+</body>
+</html>
