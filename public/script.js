@@ -758,15 +758,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedFlavors.length === 0) return;
         
         const sabores = selectedFlavors.map(f => f.name).join(' + ');
+        const adicionais = selectedAdditionalAccompaniments.map(a => a.name).join(' + ') || 'semAdicionais';
+        const molho = selectedSauce || 'semMolho';
+        const tamanho = selectedSize || 'semTamanho';
+    
         const item = {
             id: currentProduct.id,
             name: `${currentProduct.name} (${sabores})`,
             subtitle: currentProduct.subtitle,
-            price: currentProduct.price,
+            price: totalPrice,
             image: currentProduct.image,
-            category: currentProduct.category
+            category: currentProduct.category,
+            idCombinado: `${currentProduct.id}-${sabores}-${tamanho}-${molho}-${adicionais}`
         };
-        
+    
         addToCart(item);
         flavorModal.classList.remove('active');
     });
@@ -790,22 +795,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Adicionar ao carrinho
-    function addToCart(item) {
-        const existingItemIndex = cart.findIndex(i => i.name === item.name);
-        
-        if (existingItemIndex > -1) {
-            cart[existingItemIndex].quantity += 1;
-        } else {
-            cart.push({
-                ...item,
-                quantity: 1
-            });
-        }
-        
-        saveCart();
-        updateCartBadge();
-        showToast('Adicionado ao carrinho!');
+    // Adicionar ao carrinho
+function addToCart(item) {
+    const existingItemIndex = cart.findIndex(i => i.idCombinado === item.idCombinado);
+    
+    if (existingItemIndex > -1) {
+        cart[existingItemIndex].quantity += 1;
+    } else {
+        cart.push({
+            ...item,
+            quantity: 1
+        });
     }
+
+    saveCart();
+    updateCartBadge();
+    showToast('Adicionado ao carrinho!');
+}
     
     // Atualizar badge do carrinho
     function updateCartBadge() {
@@ -922,6 +928,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkoutBtn.addEventListener('click', function() {
         const nome = cartNome.value.trim();
         const tel = cartTel.value.trim();
+        const observacoes = document.getElementById('cartObservations').value.trim(); // pegar valor do textarea
         
         if (!nome || !tel) {
             showToast('Preencha nome e telefone!');
@@ -936,12 +943,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let msg = `Olá! Aqui é ${nome}. Quero fazer um pedido:%0A%0A`;
         
         cart.forEach(item => {
-            msg += `- ${item.name} (Qtd: ${item.quantity})%0A`;
+            msg += `- ${item.name} -- Qtd: ${item.quantity}%0A`;
         });
         
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         msg += `%0ATotal: R$ ${total.toFixed(2)}%0A%0A`;
         msg += `Nome: ${nome}%0ATelefone: ${tel}`;
+        if(observacoes) {
+            msg += `Observações: ${observacoes}%0A%0A`;
+        }
+        
         
         const numero = '5545991498041'; // Número de exemplo
         const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
